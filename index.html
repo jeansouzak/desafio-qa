@@ -1,0 +1,119 @@
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        #container {
+            display: flex;
+            flex-direction: column;
+
+            width: 80%;
+            height: 200px;
+
+            padding: 1rem;
+            border-radius: 8px;
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-4">
+        <div class="form">
+            <h5 class="text-center text-xl">Formulário de auditoria</h5>
+            <div class='center border p-3' novalidate>
+                <form class='mb-4 needs-validation'>
+                    <h5>Dados do Auditado</h5>
+                <div class="form-group">
+                        <div class="form-group form-group-inline">
+                            <input type="email" class="form-control" id="email" placeholder="email*" required>
+                            <small class="invalid-feedback hiden">Email e obrigatório, favor preencher para continuar</small>
+                        </div>
+                        <div class="form-group form-group-inline">
+                            <input type="text" class="form-control" id="name" placeholder="Nome*" required>
+                            <small class="invalid-feedback hiden">Nome e obrigatório, favor preencher para continuar</small>
+                        </div>
+                </div>
+                </form>
+                
+                <div class="border-top border-bottom pt-2 pb-2 mb-2">
+                    <h5>Engenharia Social</h5>
+                    <div class="form-inline">
+                        <div class="form-group form-check-inline mr-md-4">
+                            <input value='20' type="checkbox" class="form-check-input" id="credentials">
+                            <label class="form-check-label" for="credentials">Solicitação de credenciais</label>
+                        </div>
+                        <div class="form-group form-check-inline mr-md-4">
+                            <input value='10' type="checkbox" class="form-check-input" id="phishing">
+                            <label class="form-check-label" for="phishing">Phishing</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pt-2 pb-2 mb-2">
+                    <h5>Ferramentas</h5>
+                    <div class="form-inline">
+                        <div class="form-group form-check-inline mr-md-4">
+                            <input value='20' type="checkbox" class="form-check-input" id="passwordGuard">
+                            <label class="form-check-label" for="passwordGuard">Usa Gerenciador de senhas</label>
+                        </div>
+                        <div class="form-group form-check form-check-inline mr-md-4">
+                            <input value='10' type="checkbox" class="form-check-input" id="securityTrello">
+                            <label class="form-check-label" for="securityTrello">Trello Seguro</label>
+                        </div>
+                        <div class="form-group form-check form-check-inline mr-md-4">
+                            <input value='5' type="checkbox" class="form-check-input" id="securityRepositories">
+                            <label class="form-check-label" for="securityRepositories">Repositórios públicos seguros</label>
+                        </div>
+                        <div class="form-group form-check form-check-inline mr-md-4">
+                            <input value='5' type="checkbox" class="form-check-input" id="securityConfluence">
+                            <label class="form-check-label" for="securityConfluence">Confluence Seguro</label>
+                        </div>
+                        <div class="form-group form-check form-check-inline mr-md-4">
+                            <input value='10' type="checkbox" class="form-check-input" id="securityBitbucket">
+                            <label class="form-check-label" for="securityBitbucket">Bitbucket seguro</label>
+                        </div>
+                        <div class="form-group form-check form-check-inline mr-md-4">
+                            <input value='10' type="checkbox" class="form-check-input" id="securityCloudGoogle">
+                            <label class="form-check-label" for="securityCloudGoogle">Google Cloud Seguro</label>
+                        </div>
+                        <div class="form-group form-check form-check-inline mr-md-4">
+                            <input value='5' type="checkbox" class="form-check-input" id="securityGoogleAccount">
+                            <label class="form-check-label" for="securityGoogleAccount">Conta Google Segura</label>
+                        </div>
+                        <div class="form-group form-check form-check-inline mr-md-4">
+                            <input value='5' type="checkbox" class="form-check-input" id="securitySmartphone">
+                            <label class="form-check-label" for="securitySmartphone">Smartphone Seguro</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <textarea class="form-control" id="observation" rows="3" placeholder="Observações"></textarea>
+                </div>
+
+                <button type='button' class="btn btn-primary" onclick='send()' >Enviar</button>
+            </div>
+        </div>
+
+        <div id="content" style='display: none;'>
+            <div id="container">
+                <h3 id="title"></h3>
+                <span id="protocol"></span>
+                <span id="status"></span>
+                <span id="text"></span>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src='./index.js'></script>
+</body>
+</html>
